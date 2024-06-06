@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cute Cat Pictures</title>
+	<style>
+		body {
+			background-color: #00224D;
+			font-family: 'Open Sans', sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #5D0E41;
+			color: #FF204E;
+			padding: 20px;
+			text-align: center;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 48px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+
+		button {
+			background-color: #A0153E;
+			border: none;
+			color: #EEEEEE;
+			cursor: pointer;
+			font-family: 'Open Sans', sans-serif;
+			font-size: 16px;
+			font-weight: bold;
+			padding: 12px 24px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			transition: background-color 0.2s ease;
+		}
+
+		button:hover {
+			background-color: #FF204E;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Cute Car Pictures</h1>
+	</header>
+	<main>
+		<div class="container">
+			<button id="cat-button">Click me for cute cars!</button>
+			<br>
+			<img id="cat-image" src="" alt="Cute cat picture">
+		</div>
+	</main>
+
+	<script>
+		const catButton = document.querySelector('#cat-button');
+		const catImage = document.querySelector('#cat-image');
+
+		catButton.addEventListener('click', () => {
+			fetch('https://api.thecatapi.com/v1/images/search')
+				.then(response => response.json())
+				.then(data => {
+					const catUrl = data[0].url;
+					catImage.src = catUrl;
+				})
+				.catch(error => console.log(error));
+		});
+	</script>
+</body>
+</html>
