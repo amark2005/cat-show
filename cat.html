@@ -1,81 +1,130 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cute Cat Pictures</title>
-	<style>
-		body {
-			background-color: #00224D;
-			font-family: 'Open Sans', sans-serif;
-			margin: 0;
-			padding: 0;
-		}
+    <title>Cute Cat Pictures</title>
+    <style>
+        :root {
+            --royal-blue: #3C5070;
+            --deep-blue: #112250;
+            --gold: #E0C58F;
+            --off-white: #F5F0E9;
+            --beige: #D9CBC2;
+        }
 
-		header {
-			background-color: #5D0E41;
-			color: #FF204E;
-			padding: 20px;
-			text-align: center;
-		}
+        body {
+            background: linear-gradient(135deg, var(--deep-blue) 60%, var(--royal-blue) 100%);
+            font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--off-white);
+            min-height: 100vh;
+        }
 
-		h1 {
-			margin: 0;
-			font-size: 48px;
-			font-weight: bold;
-			text-transform: uppercase;
-			letter-spacing: 2px;
-		}
+        header {
+            background: var(--royal-blue);
+            color: var(--gold);
+            padding: 40px 0 24px 0;
+            text-align: center;
+            box-shadow: 0 4px 24px 0 rgba(17,34,80,0.15);
+            border-bottom: 4px solid var(--gold);
+        }
 
-		button {
-			background-color: #A0153E;
-			border: none;
-			color: #EEEEEE;
-			cursor: pointer;
-			font-family: 'Open Sans', sans-serif;
-			font-size: 16px;
-			font-weight: bold;
-			padding: 12px 24px;
-			text-transform: uppercase;
-			letter-spacing: 2px;
-			transition: background-color 0.2s ease;
-		}
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px rgba(60,80,112,0.2);
+        }
 
-		button:hover {
-			background-color: #FF204E;
-		}
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
 
-		img {
-			display: block;
-			margin: 0 auto;
-			max-width: 100%;
-			height: auto;
-		}
-	</style>
+        .container {
+            background: rgba(249, 245, 233, 0.07);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(60,80,112,0.18);
+            padding: 40px 32px 32px 32px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        button {
+            background: linear-gradient(90deg, var(--gold), var(--beige));
+            border: none;
+            color: var(--deep-blue);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 12px 0 rgba(60,80,112,0.10);
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+            margin-bottom: 24px;
+        }
+
+        button:hover, button:focus {
+            background: linear-gradient(90deg, var(--beige), var(--gold));
+            color: var(--royal-blue);
+            transform: translateY(-2px) scale(1.04);
+            outline: none;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 340px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px 0 rgba(60,80,112,0.18);
+            background: var(--beige);
+            border: 3px solid var(--gold);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 8px 16px 8px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-	<header>
-		<h1>Cute Car Pictures</h1>
-	</header>
-	<main>
-		<div class="container">
-			<button id="cat-button">Click me for cute cars!</button>
-			<br>
-			<img id="cat-image" src="" alt="Cute cat picture">
-		</div>
-	</main>
+    <header>
+        <h1>Cute Cat Pictures</h1>
+    </header>
+    <main>
+        <div class="container">
+            <button id="cat-button">Show me a royal cat!</button>
+            <br>
+            <img id="cat-image" src="" alt="Cute cat picture">
+        </div>
+    </main>
 
-	<script>
-		const catButton = document.querySelector('#cat-button');
-		const catImage = document.querySelector('#cat-image');
+    <script>
+        const catButton = document.querySelector('#cat-button');
+        const catImage = document.querySelector('#cat-image');
 
-		catButton.addEventListener('click', () => {
-			fetch('https://api.thecatapi.com/v1/images/search')
-				.then(response => response.json())
-				.then(data => {
-					const catUrl = data[0].url;
-					catImage.src = catUrl;
-				})
-				.catch(error => console.log(error));
-		});
+        catButton.addEventListener('click', () => {
+            fetch('https://api.thecatapi.com/v1/images/search')
+                .then(response => response.json())
+                .then(data => {
+                    const catUrl = data[0].url;
+                    catImage.src = catUrl;
+                })
+                .catch(error => console.log(error));
+        });
 	</script>
 </body>
 </html>
