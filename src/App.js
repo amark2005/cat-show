@@ -111,7 +111,7 @@ function App() {
           <img 
             id="cat-image" 
             src={catImage} 
-            alt="Cute kitty picture" 
+            alt="Cat"
             style={{ display: catImage ? 'block' : 'none' }}
           />
         </div>
